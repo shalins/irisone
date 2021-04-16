@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Card" representedClassName="Card" syncable="YES">
+        <attribute name="accordionData" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="cardCategory" optional="YES" attributeType="String"/>
+        <attribute name="cardDescription" optional="YES" attributeType="String"/>
+        <attribute name="cardID" optional="YES" attributeType="String"/>
+        <attribute name="cardName" optional="YES" attributeType="String"/>
+        <attribute name="createdInLat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="createdInLocation" optional="YES" attributeType="String"/>
+        <attribute name="createdInLon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="globalCardID" optional="YES" attributeType="String"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="lastLocationLat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="lastLocationLon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="lastTimestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="mapData" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="orderNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="refreshRadius" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="refreshTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="settingsGroupIDs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="tableData" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="usesCurrentLocation" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="usesSpotify" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="response" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Response" inverseName="card" inverseEntity="Response"/>
+        <relationship name="settings_groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Setting_Group" inverseName="cards" inverseEntity="Setting_Group"/>
+        <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="cards" inverseEntity="User"/>
+    </entity>
+    <entity name="Detail" representedClassName="Detail" syncable="YES">
+        <attribute name="detailID" optional="YES" attributeType="String"/>
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="richLabel" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richSmallLabelOne" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richSmallLabelTwo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <relationship name="response" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Response" inverseName="details" inverseEntity="Response"/>
+        <relationship name="subdetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subdetail" inverseName="detail" inverseEntity="Subdetail"/>
+    </entity>
+    <entity name="Response" representedClassName="Response" syncable="YES">
+        <attribute name="alerts" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="responseID" optional="YES" attributeType="String"/>
+        <attribute name="responseURL" optional="YES" attributeType="String"/>
+        <attribute name="responseURLType" optional="YES" attributeType="String"/>
+        <attribute name="sentence" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="sentenceFormat" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Card" inverseName="response" inverseEntity="Card"/>
+        <relationship name="details" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Detail" inverseName="response" inverseEntity="Detail"/>
+    </entity>
+    <entity name="Setting" representedClassName="Setting" syncable="YES">
+        <attribute name="displayVal" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="settingsID" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="settings_groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Setting_Group" inverseName="settings" inverseEntity="Setting_Group"/>
+    </entity>
+    <entity name="Setting_Group" representedClassName="Setting_Group" syncable="YES">
+        <attribute name="globalSettingsGroupID" optional="YES" attributeType="String"/>
+        <attribute name="modifierEditable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="modifierFormat" optional="YES" attributeType="String"/>
+        <attribute name="modifierHeader" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="modifierRemovable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="selectorEditable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="selectorFormat" optional="YES" attributeType="String"/>
+        <attribute name="selectorHeader" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="selectorRemovable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="settingsGroupID" optional="YES" attributeType="String"/>
+        <attribute name="tag" optional="YES" attributeType="String"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="settings_groups" inverseEntity="Card"/>
+        <relationship name="settings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Setting" inverseName="settings_groups" inverseEntity="Setting"/>
+    </entity>
+    <entity name="Subdetail" representedClassName="Subdetail" syncable="YES">
+        <attribute name="order" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="richDescription" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richLabel" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richMetric" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richMetricTwo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richMetricUnits" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richMetricUnitsTwo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richSmallLabelOne" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richSmallLabelTwo" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="richSublabel" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String: String]"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="subdetailID" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="detail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Detail" inverseName="subdetails" inverseEntity="Detail"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="firstName" attributeType="String"/>
+        <attribute name="fullName" attributeType="String"/>
+        <attribute name="lastName" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Double]"/>
+        <attribute name="oldResponseID" optional="YES" attributeType="String"/>
+        <attribute name="phoneNum" attributeType="String"/>
+        <attribute name="pushToken" attributeType="String"/>
+        <attribute name="responseRefreshIDs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="spotify" optional="YES" attributeType="String"/>
+        <attribute name="timeJoined" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="userID" attributeType="String"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="users" inverseEntity="Card"/>
+    </entity>
+    <elements>
+        <element name="Card" positionX="-3873.08984375" positionY="6765.77734375" width="128" height="433"/>
+        <element name="Detail" positionX="-4677.33984375" positionY="7246.95703125" width="128" height="178"/>
+        <element name="Response" positionX="-4876.078125" positionY="7246.87109375" width="128" height="163"/>
+        <element name="Setting" positionX="-3610.86328125" positionY="7125.546875" width="128" height="133"/>
+        <element name="Setting_Group" positionX="-3640.3046875" positionY="6769.62890625" width="128" height="238"/>
+        <element name="Subdetail" positionX="-4470.3671875" positionY="7197.3125" width="128" height="253"/>
+        <element name="User" positionX="-4057.41015625" positionY="6723.8359375" width="128" height="223"/>
+    </elements>
+</model>
